@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Capsule!</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    </head>
+    <body>
+        <form>{% csrf_token %}
+            Hey <input type="text" name="to">, <br>
+            Remember that time <br>
+            <textarea name="body"></textarea><br>
+            <input type="submit" value="Post">
+        </form>
+
+        <div>
+            Logged in as {{ username }}.
+            <a href="logout_user">Log out</a>
+        </div>
+
+        <script type="text/javascript">
+            $('form').submit(function(e) {
+                e.preventDefault();
+                var serialized = $(this).serializeArray();
+                $.post('add/', serialized, function (data) {
+                    $('form').find('input[type=text], textarea').val('');
+                    console.log(data)
+                });
+            });
+        </script>
+    </body>
+</html>

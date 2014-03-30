@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Capsule!</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    </head>
+    <body>
+        <form action="login_user/" method="post">{% csrf_token %}
+            username <input type="text" name="username"><br>
+            password <input type="text" name="password"><br>
+            <input type="submit" value="Log in">
+        </form>
+    </body>
+</html>
