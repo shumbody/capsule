@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 {% block form %}
-<form role="form">{% csrf_token %}
+
+{% verbatim %}
+<script id="alert-template" type="text/x-handlebars-template">
+    <div class="alert alert-dismissable {{modifiers}}">
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-hidden="true">&times;</button>
+      <strong>{{header}}</strong> {{message}}
+    </div>
+</script>
+{% endverbatim %}
+
+<div id="alert-center"></div>
+
+<form class="form-memory" role="form">{% csrf_token %}
     <div class="form-group">
         Hey <input class="inline-input" type="text" name="to" placeholder="term of endearment">,
     </div>
@@ -15,18 +31,6 @@
     Logged in as {{ username }}.
     <a href="logout_user">Log out</a>
 </div>
-
-<script type="text/javascript">
-    $('form').submit(function(e) {
-        e.preventDefault();
-        var serialized = $(this).serializeArray();
-        console.log(serialized)
-        $.post('add/', serialized, function (data) {
-            $('form').find('input[type=text], textarea').val('');
-            console.log(data)
-        });
-    });
-</script>
 
 {% endblock %}
 

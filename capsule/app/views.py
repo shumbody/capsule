@@ -15,12 +15,12 @@ def add(request):
         mem.save()
 
         response_data = {}
-        response_data['header'] = 'Memory stored!'
+        response_data['header'] = 'Memory saved!'
         response_data['message'] = {
             'to': mem.to,
             'body': mem.body,
             'from': mem.author.username,
-            'date': int(mem.date.strftime('%s'))
+            'date': int(mem.date.strftime('%s')) * 1000
         }
         return HttpResponse(json.dumps(response_data), content_type='application/json')
 
