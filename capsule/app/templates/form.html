@@ -1,31 +1,36 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Capsule!</title>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    </head>
-    <body>
-        <form>{% csrf_token %}
-            Hey <input type="text" name="to">, <br>
-            Remember that time <br>
-            <textarea name="body"></textarea><br>
-            <input type="submit" value="Post">
-        </form>
+{% extends 'base.html' %}
+{% block form %}
+<form role="form">{% csrf_token %}
+    <div class="form-group">
+        Hey <input class="inline-input" type="text" name="to" placeholder="term of endearment">,
+    </div>
+    <div class="form-group">
+        <label for="body">Remember that time...</label>
+        <textarea name="body" class="form-control" rows="3"></textarea>
+    </div>
+    <button type="submit" class="btn btn-default">Post</button>
+</form>
+<br>
+<div>
+    Logged in as {{ username }}.
+    <a href="logout_user">Log out</a>
+</div>
 
-        <div>
-            Logged in as {{ username }}.
-            <a href="logout_user">Log out</a>
-        </div>
+<script type="text/javascript">
+    $('form').submit(function(e) {
+        e.preventDefault();
+        var serialized = $(this).serializeArray();
+        console.log(serialized)
+        $.post('add/', serialized, function (data) {
+            $('form').find('input[type=text], textarea').val('');
+            console.log(data)
+        });
+    });
+</script>
 
-        <script type="text/javascript">
-            $('form').submit(function(e) {
-                e.preventDefault();
-                var serialized = $(this).serializeArray();
-                $.post('add/', serialized, function (data) {
-                    $('form').find('input[type=text], textarea').val('');
-                    console.log(data)
-                });
-            });
-        </script>
-    </body>
-</html>
+{% endblock %}
+
+
+
+
+

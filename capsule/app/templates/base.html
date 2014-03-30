@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Capsule!</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <style>
+            .inline-input {
+                border: 0px;
+                border-bottom: 1px solid #ccc;
+                outline: none;
+            }
+            .form-center {
+                height: 300px;
+                margin: auto;
+                position: absolute;
+                top: 0; left: 0; bottom: 0; right: 0;
+                width: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="form-center">
+                {% block form %}{% endblock %}
+            </div>
+        </div>
+    </body>
+</html>
