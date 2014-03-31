@@ -2,7 +2,7 @@ Capsule
 =======
 A time capsule for adding memories
 
-Capsule depends on django-toolbelt. To install:
+Capsule depends on django-toolbelt. To run locally,
 ```
 > sudo pip install django-toolbelt
 ```
